@@ -23,11 +23,17 @@
     (is (lychrel? 5 1))))
 
 (deftest test-lychrel-with-2-iters
-  (testing "5 is not lychral (5+5=10, 10+01=11, palindromic)"
+  (testing "5 is not lychrel (5+5=10, 10+01=11, palindromic)"
     (is (not (lychrel? 5 2))))
-  (testing "196 is believed to be lychral, so must be for 2 iters"
+  (testing "196 is believed to be lychrel, so must be for 2 iters"
     (is (lychrel? 196 2))))
 
+(deftest test-lychrel-89
+  (testing "is lychrel with 23 iterations"
+    (is (lychrel? 89 23)))
+  (testing "is not lychrel with 24 iterations"
+    (is (not (lychrel? 89 24)))))
+
 (deftest test-lychrel-with-50-iters
-  (testing "196 is believed to be lychral, so must be for 50 iters"
+  (testing "196 is believed to be lychrel, so must be for 50 iters"
     (is (lychrel? 196 50))))
