@@ -3,7 +3,7 @@
   (:use [clojure.test]))
 
 (deftest test-reverse-int
-  (testing "integers are reversed correcly"
+  (testing "integers are reversed correctly"
     (is (= 123 (reverse-int 321)))
     (is (= 123456789 (reverse-int 987654321)))))
 
@@ -19,11 +19,11 @@
 (deftest test-lychrel-with-1-iter
   (testing "1 is not lychrel (1+1=1, palindromic)"
     (is (not (lychrel? 1 1))))
-  (testing "5 is lychrel (5+5=10, not palindromic"
+  (testing "5 is lychrel (5+5=10, not palindromic)"
     (is (lychrel? 5 1))))
 
 (deftest test-lychrel-with-2-iters
-  (testing "5 is not lychral (5+5=10, 10+01=11, palindromic"
+  (testing "5 is not lychral (5+5=10, 10+01=11, palindromic)"
     (is (not (lychrel? 5 2))))
   (testing "196 is believed to be lychral, so must be for 2 iters"
     (is (lychrel? 196 2))))
