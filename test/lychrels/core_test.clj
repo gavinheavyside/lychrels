@@ -18,22 +18,29 @@
 
 (deftest test-lychrel-with-1-iter
   (testing "1 is not lychrel (1+1=1, palindromic)"
-    (is (not (lychrel? 1 1))))
+    (is (not (lychrel? 1 1)))
+    (is (not (lazy-lychrel? 1 1))))
   (testing "5 is lychrel (5+5=10, not palindromic)"
-    (is (lychrel? 5 1))))
+    (is (lychrel? 5 1))
+    (is (lazy-lychrel? 5 1))))
 
 (deftest test-lychrel-with-2-iters
   (testing "5 is not lychrel (5+5=10, 10+01=11, palindromic)"
-    (is (not (lychrel? 5 2))))
+    (is (not (lychrel? 5 2)))
+    (is (not (lazy-lychrel? 5 2))))
   (testing "196 is believed to be lychrel, so must be for 2 iters"
-    (is (lychrel? 196 2))))
+    (is (lychrel? 196 2))
+    (is (lazy-lychrel? 196 2))))
 
 (deftest test-lychrel-89
   (testing "is lychrel with 23 iterations"
-    (is (lychrel? 89 23)))
+    (is (lychrel? 89 23))
+    (is (lazy-lychrel? 89 23)))
   (testing "is not lychrel with 24 iterations"
-    (is (not (lychrel? 89 24)))))
+    (is (not (lychrel? 89 24)))
+    (is (not (lazy-lychrel? 89 24)))))
 
 (deftest test-lychrel-with-50-iters
   (testing "196 is believed to be lychrel, so must be for 50 iters"
-    (is (lychrel? 196 50))))
+    (is (lychrel? 196 50))
+    (is (lazy-lychrel? 196 50))))

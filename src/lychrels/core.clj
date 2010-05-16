@@ -10,8 +10,7 @@
 (defn palindromic?
   "returns true if the number is palindromic, e.g. 121, 1234321"
   [x]
-  (= x (reverse-int x))
-  )
+  (= x (reverse-int x)))
 
 (defn lychrel?
   "returns true if the number recursively added to its reverse is not
@@ -21,19 +20,31 @@
      (let [reverse-sum (+ x (reverse-int x))]
        (cond (< iterations 1) true
              (palindromic? reverse-sum) false
-             :default (lychrel? reverse-sum (dec iterations)))))
-  )
+             :default (lychrel? reverse-sum (dec iterations))))))
+
+;; lazy version by tcrayford
+;; http://gist.github.com/402335
+(defn lazy-lychrel?
+  ([x] (lychrel? x 50))
+  ([x iterations]
+     (let [next-num #(+ % (reverse-int %))]
+       (->> x
+            (iterate next-num)
+            rest
+            (take iterations)
+            (some palindromic?)
+            not))))
 
 (defn count-lychrels-to-10000
   "Counts the number of lychrels below 10000"
-  []
-  (count (filter lychrel? (range 1 10000)))
-  )
+  [func]
+  (count (filter func (range 1 10000))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defn -main
   []
-  (time (println (count-lychrels-to-10000))))
+  (time (println (str "with recursion: " (count-lychrels-to-10000 lychrel?))))
+  (time (println (str " with lazyness: " (count-lychrels-to-10000 lazy-lychrel?)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
